@@ -33,26 +33,26 @@
               </tr>
             </thead>
             <tbody>
-              <?php 
-                for ($i=0; $i < count($data); $i++) { ?>
-                  <tr>
-                    <td><input type="checkbox" class="cbsp" value="<?php echo $data[$i]['masp'] ?>"></td>
-                    <td><?php echo $i + 1 ?></td>
-                    <td><?php echo $data[$i]['masp'] ?></td>
-                    <td><?php echo $data[$i]['tensp'] ?></td>
-                    <td><img style="width: 50px" src="<?php echo $data[$i]['anhchinh'] ?>"></td>
-                    <td><?php echo $data[$i]['gia'] ?></td>
-                    <td><?php echo $data[$i]['baohanh'] ?> tháng</td>
-                    <td><?php echo $data[$i]['luotmua'] ?></td>
-                    <td><?php echo $data[$i]['luotxem'] ?></td>
-                    <td><?php echo $data[$i]['ngay_nhap'] ?></td>
-                    <td class="text-center">
-                      <span class="btn btn-primary btn-sm">Chỉnh sửa</span>
-                      <span class="btn btn-danger btn-sm">Xóa</span>
-                    </td>
-                  </tr>
-                <?php }
-               ?>
+              <?php
+              for ($i = 0; $i < count($data); $i++) { ?>
+                <tr>
+                  <td><input type="checkbox" class="cbsp" value="<?php echo $data[$i]['masp'] ?>"></td>
+                  <td><?php echo $i + 1 ?></td>
+                  <td><?php echo $data[$i]['masp'] ?></td>
+                  <td><?php echo $data[$i]['tensp'] ?></td>
+                  <td><img style="width: 50px" src="<?php echo $data[$i]['anhchinh'] ?>"></td>
+                  <td><?php echo $data[$i]['gia'] ?></td>
+                  <td><?php echo $data[$i]['baohanh'] ?> tháng</td>
+                  <td><?php echo $data[$i]['luotmua'] ?></td>
+                  <td><?php echo $data[$i]['luotxem'] ?></td>
+                  <td><?php echo $data[$i]['ngay_nhap'] ?></td>
+                  <td class="text-center">
+                    <span class="btn btn-primary btn-sm">Chỉnh sửa</span>
+                    <span class="btn btn-danger btn-sm">Xóa</span>
+                  </td>
+                </tr>
+              <?php }
+              ?>
             </tbody>
           </table>
         </div>
@@ -84,26 +84,26 @@
 <!-- page script -->
 <script>
   $('#sptab').addClass('active');
-  $(document).ready(function(){
-      $('#example1 tr').not($('#tbheader')).click(function(event){
-        if (event.target.type !== 'checkbox') {
-          $(':checkbox', this).trigger('click');
-        }
-      })
-      $('#example1').addClass('active');
-      $('#check-all-gd').click(function() {
-       $('input:checkbox').not(this).prop('checked', this.checked);
-     });
+  $(document).ready(function() {
+    $('#example1 tr').not($('#tbheader')).click(function(event) {
+      if (event.target.type !== 'checkbox') {
+        $(':checkbox', this).trigger('click');
+      }
     })
-  $(function () {
+    $('#example1').addClass('active');
+    $('#check-all-gd').click(function() {
+      $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+  })
+  $(function() {
     $('#example1').DataTable()
     $('#example2').DataTable({
-      'paging'      : true,
+      'paging': true,
       'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
+      'searching': false,
+      'ordering': true,
+      'info': true,
+      'autoWidth': false
     })
   })
 </script>

@@ -61,10 +61,12 @@
 							<td><input type="number" class="num" data-type='buynow' name="num[]" value="1" class="form-control" style="width: 80px;" min='1'></td>
 						</tr>
 						<tr>
-							<td colspan="3" style="text-align: right;">
+							<td colspan="4" style="text-align: right;">
 								<h3><b>Tổng tiền: </b><span id='totalPrice' style="color: red; font-size: 28px;"></span> VND</h3>
 							</td>
-							<td>
+						</tr>
+						<tr>
+							<td colspan="4">
 								<a id='orderCompleteBtn' class="pull-right btn btn-primary btn-lg">Xác nhận</a><br><br>
 							</td>
 						</tr>

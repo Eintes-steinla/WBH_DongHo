@@ -118,21 +118,32 @@ class ClientController extends Controller
 	}
 	function orderComplete()
 	{
+		if (!isset($_SESSION['user'])) {
+			echo "<script>alert('Bạn cần đăng nhập để thực hiện chức năng này!');</script>";
+			exit();
+		}
+
 		$ten = $sdt = $quan = $dc = $type = "";
 		$tt = 0;
 		$num = $sp = [];
 
-		if (isset($_POST['ten'])) {
+		if (!empty($_POST['ten'])) {
 			$ten = $_POST['ten'];
+		} else {
+			$ten = $_SESSION['user']['ten'];
 		}
-		if (isset($_POST['sdt'])) {
+		if (!empty($_POST['sdt'])) {
 			$sdt = $_POST['sdt'];
+		} else {
+			$sdt = $_SESSION['user']['sodt'];
 		}
 		if (isset($_POST['quan'])) {
 			$quan = $_POST['quan'];
 		}
-		if (isset($_POST['dc'])) {
+		if (!empty($_POST['dc'])) {
 			$dc = $_POST['dc'];
+		} else {
+			$dc = $_SESSION['user']['diachi'];
 		}
 		if (isset($_POST['sp'])) {
 			$sp = $_POST['sp'];

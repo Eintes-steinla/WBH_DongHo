@@ -60,19 +60,19 @@
               </tr>
             </thead>
             <tbody>
-              <?php 
-              for ($i=0; $i < count($data); $i++) { ?>
-              <tr>
-                <td><?php echo $i + 1 ?></td>
-                <td><?php echo $data[$i]['madm'] ?></td>
-                <td><?php echo $data[$i]['tendm'] ?></td>
-                <td><?php echo $data[$i]['xuatsu'] ?></td>
-                <td><?php echo $data[$i]['tongsp'] ?></td>
-                <td class="text-center">
-                  <span class="btn btn-primary editItemBtn" data-id='<?php echo $data[$i]['madm'] ?>'>Chỉnh sửa</span>
-                  <span class="btn btn-danger delItemBtn" data-id='<?php echo $data[$i]['madm'] ?>'>Xóa</span>
-                </td>
-              </tr>
+              <?php
+              for ($i = 0; $i < count($data); $i++) { ?>
+                <tr>
+                  <td><?php echo $i + 1 ?></td>
+                  <td><?php echo $data[$i]['madm'] ?></td>
+                  <td><?php echo $data[$i]['tendm'] ?></td>
+                  <td><?php echo $data[$i]['xuatsu'] ?></td>
+                  <td><?php echo $data[$i]['tongsp'] ?></td>
+                  <td class="text-center">
+                    <span class="btn btn-primary editItemBtn" data-id='<?php echo $data[$i]['madm'] ?>'>Chỉnh sửa</span>
+                    <span class="btn btn-danger delItemBtn" data-id='<?php echo $data[$i]['madm'] ?>'>Xóa</span>
+                  </td>
+                </tr>
               <?php }
               ?>
             </tbody>
@@ -106,58 +106,59 @@
 <!-- page script -->
 <script>
   $('#dmsptab').addClass('active');
-  $(function () {
+  $(function() {
     $('#example1').DataTable()
     $('#example2').DataTable({
-      'paging'      : true,
+      'paging': true,
       'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
+      'searching': false,
+      'ordering': true,
+      'info': true,
+      'autoWidth': false
     })
   })
 </script>
 <script>
-  $('#addBtn').on('click',function(){
+  $('#addBtn').on('click', function() {
     $('#addArea').toggle(300);
   })
-  $('#cancelAddBtn').on('click',function(){
+  $('#cancelAddBtn').on('click', function() {
     $('#addArea').toggle(300);
   })
-  $('#add2Btn').on('click',function(){
-    action('add',);
+  $('#add2Btn').on('click', function() {
+    action('add', );
   })
-  $('#edit2Btn').on('click',function(){
+  $('#edit2Btn').on('click', function() {
     var id = $(this).data('id');
-    action('edit',id);
+    action('edit', id);
   })
-  $('.delItemBtn').on('click',function(){
+  $('.delItemBtn').on('click', function() {
     var cf = confirm('Bạn chắc chứ?');
-    if(cf){
+    if (cf) {
       var id = $(this).data('id');
-      action('del', id);  
+      action('del', id);
     }
   })
-  $('.editItemBtn').on('click',function(){
-    $('#edit2Btn').attr('data-id',$(this).data('id'));
+  $('.editItemBtn').on('click', function() {
+    $('#edit2Btn').attr('data-id', $(this).data('id'));
     $('#example1').toggle();
     $('#editArea').toggle(300);
     $('#categoryName4Edit').val($(this).closest('tr').children('td:nth-child(3)').text());
     $('#categoryCountry4Edit').val($(this).closest('tr').children('td:nth-child(4)').text());
   })
-  $('#cancelEditBtn').on('click',function(){
+  $('#cancelEditBtn').on('click', function() {
     $('#example1').toggle();
     $('#editArea').toggle(300);
   })
-  function action(name, id = null){
+
+  function action(name, id = null) {
     var name4edit = $('#categoryName4Edit').val();
     var country4edit = $('#categoryCountry4Edit').val();
     var cname = ccountry = '';
-    if(name == 'add'){
+    if (name == 'add') {
       cname = $('#categoryName').val();
       ccountry = $('#categoryCountry').val();
-      if(cname == ''){
+      if (cname == '') {
         alert('Bạn chưa điền tên danh mục!');
         return;
       }
@@ -166,9 +167,16 @@
       url: 'category/action',
       type: 'GET',
       dataType: 'text',
-      data: {name, id,cname, ccountry,name4edit,country4edit},
-      success: function(result){
-        if(result == 'OK'){
+      data: {
+        name,
+        id,
+        cname,
+        ccountry,
+        name4edit,
+        country4edit
+      },
+      success: function(result) {
+        if (result == 'OK') {
           alert("Successful!");
           location.reload();
         } else {
@@ -178,6 +186,3 @@
     })
   }
 </script>
-
-
-

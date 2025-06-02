@@ -1,21 +1,22 @@
 <?php
 
 /**
-* 
-*/
+ * 
+ */
 class IndexAdminController extends Controller
 {
-	
+
 	function __construct()
 	{
 		$this->folder = "admin";
-
 	}
-	function index(){
+	function index()
+	{
 		require_once 'views/admin/index.php';
 	}
-	function dashboard(){
-		if(!isset($_SESSION['admin'])){
+	function dashboard()
+	{
+		if (!isset($_SESSION['admin'])) {
 			header("Location: http://localhost/WBH_MVC/indexadmin");
 		}
 		require_once 'vendor/Model.php';
@@ -29,22 +30,23 @@ class IndexAdminController extends Controller
 		$data[] = $mb->memberToday();
 		$data[] = count($prd->getAllPrds());
 		$data[] = $mb->allMember();
-		$this->render('dashboard',$data,null,'admin');
+		$this->render('dashboard', $data, null, 'admin');
 	}
-	function login(){
+	function login()
+	{
 		require_once 'vendor/Model.php';
 		require_once 'models/users/userModel.php';
 		$md = new userModel;
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		if($username == "" || $password == ""){
+		if ($username == "" || $password == "") {
 			echo "Không được để trống!";
 			return 0;
 		}
 		$data = array();
-		if($md->getUserByUsername($username)){
+		if ($md->getUserByUsername($username)) {
 			$data = $md->getUserByUsername($username);
-			if($password == $data['matkhau'] && $data['quyen'] == '1'){
+			if ($password == $data['matkhau'] && $data['quyen'] == '1') {
 				echo "LoginSuccess";
 				$_SESSION['user'] = $data;
 				$_SESSION['admin'] = $data;
@@ -56,10 +58,11 @@ class IndexAdminController extends Controller
 			echo "Sai tên tài khoản hoặc mật khẩu!";
 		}
 	}
-	function logout(){
+	function logout()
+	{
 		session_unset();
 		session_destroy();
 		unset($_COOKIE['user']);
-		setcookie('user',null,-1,'/');
+		setcookie('user', '', time() - 3600, '/');
 	}
 }

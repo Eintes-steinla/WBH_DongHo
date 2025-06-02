@@ -737,7 +737,7 @@ CREATE TABLE `thanhvien` (
   `tentaikhoan` varchar(100) NOT NULL,
   `matkhau` varchar(100) NOT NULL,
   `diachi` varchar(255) NOT NULL,
-  `sodt` varchar(12) NOT NULL,
+  `sodt` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `quyen` TINYINT UNSIGNED NOT NULL DEFAULT '0'

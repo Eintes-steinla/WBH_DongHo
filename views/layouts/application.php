@@ -115,6 +115,11 @@ if (isset($_COOKIE['user']) && !isset($_SESSION['user'])) {
 					<li class="menu-name" id="dgg"><a href="product/List/OnSale">Đang giảm giá</a></li>
 					<li class="menu-name" id="spm"><a href="product/List/Newest">Sản phẩm mới</a></li>
 					<li class="menu-name" id="mntq"><a href="product/List/BestSelling">Mua nhiều tuần qua</a></li>
+					<?php
+					if (isset($_SESSION['user']) && $_SESSION['user']['quyen'] == 1) {
+						echo '<li class="menu-name" id="mntq"><a href="http://localhost/WBH_MVC/indexadmin/dashboard">ADMIN DASHBOARD</a></li>';
+					}
+					?>
 
 				</ul>
 				<div style="cursor: pointer;"><a href="client/viewcart" style="color: yellow"><i class="navbar-right glyphicon glyphicon-shopping-cart btn-lg" id="cart_count">
