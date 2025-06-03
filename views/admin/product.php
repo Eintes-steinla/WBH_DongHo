@@ -47,8 +47,10 @@
                   <td><?php echo $data[$i]['luotxem'] ?></td>
                   <td><?php echo $data[$i]['ngay_nhap'] ?></td>
                   <td class="text-center">
-                    <span class="btn btn-primary btn-sm">Chỉnh sửa</span>
-                    <span class="btn btn-danger btn-sm">Xóa</span>
+                    <form action="<?php echo INDEX_URL . 'controllers/admin/DeleteProduct.php/?id=' . $data[$i]['masp']; ?>" method="post">
+                      <span class="btn btn-primary btn-sm">Chỉnh sửa</span>
+                      <button type="submit" name="delete" class="btn btn-danger btn-sm">Xóa</button>
+                    </form>
                   </td>
                 </tr>
               <?php }

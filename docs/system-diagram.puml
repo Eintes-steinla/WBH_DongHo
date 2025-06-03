@@ -1,0 +1,100 @@
+@startuml WBH_MVC System Architecture
+
+skinparam packageStyle rectangle
+
+title WBH_MVC - Hệ thống Quản lý Bán Hàng
+
+' Định nghĩa actors
+actor "Khách" as Guest
+actor "Người dùng\nđã đăng nhập" as User
+actor "Quản trị viên" as Admin
+
+' Định nghĩa các package chính
+package "Frontend Layer" {
+    [Index Controller] as IC
+    [Product Controller] as PC
+    [Client Controller] as CC
+    [User Controller] as UC
+}
+
+package "Admin Layer" {
+    [Index Admin Controller] as IAC
+    [Product Admin Controller] as PAC
+    [Category Controller] as CatC
+    [Member Controller] as MC
+    [Order Controller] as OC
+    [Analytics Controller] as AC
+}
+
+package "Models" {
+    [Product Model] as PM
+    [Category Model] as CM
+    [User Model] as UM
+    [Member Model] as MM
+    [Order Model] as OM
+}
+
+database "MySQL Database" {
+    [danhmucsp] as Categories
+    [sanpham] as Products
+    [thanhvien] as Members
+    [donhang] as Orders
+    [giohang] as Cart
+}
+
+' Luồng người dùng
+Guest --> IC : Xem sản phẩm
+Guest --> PC : Tìm kiếm/Lọc
+Guest --> CC : Thêm vào giỏ hàng
+User --> UC : Quản lý tài khoản
+User --> CC : Đặt hàng
+
+' Luồng admin
+Admin --> IAC : Đăng nhập admin
+Admin --> PAC : Quản lý sản phẩm
+Admin --> CatC : Quản lý danh mục
+Admin --> MC : Quản lý thành viên
+Admin --> OC : Quản lý đơn hàng
+Admin --> AC : Xem thống kê
+
+' Kết nối Controllers với Models
+PC ..> PM
+CatC ..> CM
+UC ..> UM
+MC ..> MM
+OC ..> OM
+
+' Kết nối Models với Database
+PM --> Products
+PM --> Categories
+CM --> Categories
+UM --> Members
+MM --> Members
+OM --> Orders
+CC --> Cart
+
+note right of Guest
+  Khách có thể:
+  * Xem sản phẩm
+  * Tìm kiếm
+  * Thêm vào giỏ
+end note
+
+note right of User
+  Người dùng có thể:
+  * Đăng nhập/đăng ký
+  * Quản lý tài khoản
+  * Đặt hàng
+  * Xem lịch sử
+end note
+
+note right of Admin
+  Admin có thể:
+  * Quản lý sản phẩm
+  * Quản lý danh mục
+  * Quản lý thành viên
+  * Quản lý đơn hàng
+  * Xem thống kê
+end note
+
+@enduml

@@ -17,36 +17,36 @@
           <div class="container" style="margin-bottom: 15px; display: none" id="addArea">
             <form action="" method="POST" role="form">
               <legend>Thêm thành viên</legend>
-            
+
               <div class="form-group">
                 <label for="">Tên</label>
-                <input type="text" class="form-control" id="name" >
+                <input type="text" class="form-control" id="name">
               </div>
               <div class="form-group">
                 <label for="">Tên tài khoản</label>
-                <input type="text" class="form-control" id="username" >
+                <input type="text" class="form-control" id="username">
               </div>
               <div class="form-group">
                 <label for="">Mật khẩu</label>
-                <input type="password" class="form-control" id="password" >
+                <input type="password" class="form-control" id="password">
               </div>
               <div class="form-group">
                 <label for="">Nhập lại mật khẩu</label>
-                <input type="password" class="form-control" id="cpassword" >
+                <input type="password" class="form-control" id="cpassword">
               </div>
               <div class="form-group">
                 <label for="">Địa chỉ</label>
-                <input type="text" class="form-control" id="addr" >
+                <input type="text" class="form-control" id="addr">
               </div>
               <div class="form-group">
                 <label for="">SDT</label>
-                <input type="text" class="form-control" id="tel" >
+                <input type="text" class="form-control" id="tel">
               </div>
               <div class="form-group">
                 <label for="">Email</label>
-                <input type="text" class="form-control" id="email" >
+                <input type="text" class="form-control" id="email">
               </div>
-            
+
               <span class="btn btn-success" id="add2Btn">Thêm</span>
               <span class="btn btn-default" id="cancelBtn">Hủy</span>
             </form>
@@ -66,23 +66,23 @@
               </tr>
             </thead>
             <tbody>
-              <?php 
-                for ($i=0; $i < count($data); $i++) { ?>
-                  <tr>
-                    <td><?php echo $i + 1 ?></td>
-                    <td><?php echo $data[$i]['id'] ?></td>
-                    <td><?php echo $data[$i]['ten'] ?></td>
-                    <td><?php echo $data[$i]['tentaikhoan'] ?></td>
-                    <td><?php echo $data[$i]['diachi'] ?></td>
-                    <td><?php echo $data[$i]['sodt'] ?></td>
-                    <td><?php echo $data[$i]['email'] ?></td>
-                    <td><?php echo $data[$i]['date'] ?></td>
-                    <td class="text-center">
-                      <span class="btn btn-danger btn-sm delBtn" data-id="<?php echo $data[$i]['id'] ?>">Xóa</span>
-                    </td>
-                  </tr>
-                <?php }
-               ?>
+              <?php
+              for ($i = 0; $i < count($data); $i++) { ?>
+                <tr>
+                  <td><?php echo $i + 1 ?></td>
+                  <td><?php echo $data[$i]['id'] ?></td>
+                  <td><?php echo $data[$i]['ten'] ?></td>
+                  <td><?php echo $data[$i]['tentaikhoan'] ?></td>
+                  <td><?php echo $data[$i]['diachi'] ?></td>
+                  <td><?php echo $data[$i]['sodt'] ?></td>
+                  <td><?php echo $data[$i]['email'] ?></td>
+                  <td><?php echo $data[$i]['date'] ?></td>
+                  <td class="text-center">
+                    <span class="btn btn-danger btn-sm delBtn" data-id="<?php echo $data[$i]['id'] ?>">Xóa</span>
+                  </td>
+                </tr>
+              <?php }
+              ?>
             </tbody>
           </table>
         </div>
@@ -114,37 +114,38 @@
 <!-- page script -->
 <script>
   $('#tvtab').addClass('active');
-  $(function () {
+  $(function() {
     $('#example1').DataTable()
     $('#example2').DataTable({
-      'paging'      : true,
+      'paging': true,
       'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
+      'searching': false,
+      'ordering': true,
+      'info': true,
+      'autoWidth': false
     })
   })
 </script>
 <script>
-  $('.delBtn').on('click',function(){
+  $('.delBtn').on('click', function() {
     var cf = confirm('Hãy cân nhắc kỹ! Bạn có chắc muốn xóa tài khoản này?');
-    if(cf){
-      action('del',$(this).data('id'));
+    if (cf) {
+      action('del', $(this).data('id'));
     }
   })
-  $('#addBtn').click(function(){
+  $('#addBtn').click(function() {
     $('#addArea').toggle(300);
   })
-  $('#add2Btn').click(function(){
+  $('#add2Btn').click(function() {
     action('add');
   })
-  $('#cancelBtn').click(function(){
+  $('#cancelBtn').click(function() {
     $('#addArea').toggle(300);
   })
-  function action(name, id=null){
+
+  function action(name, id = null) {
     var name2 = username = cpassword = password = addr = tel = email = '';
-    if(name == 'add'){
+    if (name == 'add') {
       name2 = $('#name').val();
       username = $('#username').val();
       password = $('#password').val();
@@ -152,11 +153,11 @@
       addr = $('#addr').val();
       tel = $('#tel').val();
       email = $('#email').val();
-      if(username == '' || password == ''){
+      if (username == '' || password == '') {
         alert('Không được để trống!');
         return;
       }
-      if(password != cpassword){
+      if (password != cpassword) {
         alert('Mật khẩu nhập lại không trùng khớp!');
         return;
       }
@@ -165,11 +166,20 @@
       url: 'member/action',
       type: 'POST',
       dataType: 'text',
-      data: {name, id, name2, username, password, addr, tel, email},
-      success: function(result){
+      data: {
+        name,
+        id,
+        name2,
+        username,
+        password,
+        addr,
+        tel,
+        email
+      },
+      success: function(result) {
         location.reload();
       }
     })
-    
+
   }
 </script>

@@ -6,6 +6,8 @@
 -- Generation Time: Dec 17, 2017 at 03:09 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.2
+-- DROP DATABASE IF EXISTS `qlbh`;
+-- CREATE DATABASE qlbh;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 
 SET time_zone = "+00:00";

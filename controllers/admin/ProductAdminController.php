@@ -21,4 +21,23 @@ class ProductAdminController extends Controller
 		$data = $md->getAllPrds();
 		$this->render('product', $data, 'SẢN PHẨM', 'admin');
 	}
+
+	function action()
+	{
+		$actionName = $id = '';
+		if (isset($_POST['id'])) {
+			$id = $_POST['id'];
+		}
+		require_once 'vendor/Model.php';
+		require_once 'models/admin/productModel.php';
+		$md = new productModel;
+		switch ($actionName) {
+			case 'del':
+				$md->delete('sanpham', 'masp = ' . $id);
+				break;
+			default:
+				echo "Error!";
+				break;
+		}
+	}
 }

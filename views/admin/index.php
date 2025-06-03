@@ -12,7 +12,7 @@
 
 <body>
 	<div class="container-fluid" style="background-color: #2c56b5; text-align: center; margin-bottom: 20px">
-		<img src="public/images/logo.png">
+		<a href="<?php echo INDEX_URL; ?>"><img src="public/images/logo.png"></a>
 	</div>
 	<div class="container">
 		<div class="row">
